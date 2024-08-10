@@ -1,0 +1,38 @@
+---
+const { pelicula } = Astro.props;
+
+const url = '../public/peliculas/'
+let enlace1 = 'modalEx'
+let enlace2 = '.showModal()'
+---
+
+<div class="card bg-zinc-700 w-4/5 shadow-xl text-white mx-8">
+	<figure>
+	  <img
+	  class="p-2 rounded-2xl"
+	  src={url+pelicula.poster_path}
+	  alt={pelicula.title}
+		/>
+	</figure>
+	<div class="card-body">
+	  <h2 class="card-title">{pelicula.title}</h2>
+	  <p>Fecha de lanzamiento: {pelicula.release_date}</p>
+	  <p>Valoración: <span class="rounded-lg p-1 font-bold valor">{pelicula.vote_average}</span></p> 
+	  <div class="card-actions justify-end">
+		<button type="button" class="btn btn-primary hover:bg-white hover:text-black" onclick={enlace1+pelicula.id+enlace2}>Ver Detalles</button>
+	  </div>
+	  
+  </div>
+  <script>
+let element = document.getElementsByClassName('valor');
+
+if (element.length >= 6) {
+  for (let i = 0; i < element.length; i++) {
+    element[i].classList.add('bg-green-500');
+  }
+} else {
+  for (let i = 0; i < element.length; i++) {
+    element[i].classList.add('bg-red-300');
+  }
+}
+  </script>

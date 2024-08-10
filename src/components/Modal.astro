@@ -1,0 +1,49 @@
+---
+interface Props {
+	title: string;
+	release: string;
+	image: string;
+	vote: number;
+    overview: string;
+    click: number;
+}
+const { title, release, image, vote, overview, click } = Astro.props;
+let enlace1 = 'modalEx'
+const url = '../public/peliculas'
+---
+
+<dialog id={enlace1+click} class="modal">
+    <div class="modal-box text-white bg-zinc-700 ">
+      <h3 class="text-lg font-bold">Detalle de la Película</h3>
+      <div id="modalInfo" class="flex">
+        <div class="w-2/4">
+            <img
+                        class="p-2 rounded-2xl"
+                        src={url + image}
+                        alt="" />
+
+        </div>
+           
+        
+          <div class="w-2/4" id="Info">
+              <p><span class="font-bold">Título:</span> {title}</p>
+              <p><span class="font-bold">Valoración:</span> {vote}</p>
+              <p><span class="font-bold">Fecha de Lanzamiento: </span>{release}</p>
+              <p><span class="font-bold">Sinopsis: </span>{overview}</p>
+              <div class="modal-action">
+                <form method="dialog">
+                  <button class="btn hover:bg-white hover:text-black">Cerrar</button>
+                </form>
+              </div>
+            </div>
+      </div>
+      </div>
+  </dialog>
+
+  <style>
+.modal-box {
+    width: 80%; /* Adjust width as needed (e.g., 70%, 90%) */
+    max-width: 700px; /* Optional: Set a maximum width for responsiveness */
+    height: auto; /* Allow content to determine height */
+}
+  </style>

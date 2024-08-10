@@ -1,0 +1,40 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Card from '../components/Card.astro'
+import data from '../datos/peliculas.json'
+import Carrusel from '../components/Carrusel.astro'
+import Modal from '../components/Modal.astro'
+
+let enlance = 'modalExecute'
+---
+
+<Layout title="Bienvenido a Moviedb">
+  <Carrusel />
+    <main class="mx-auto px-3 flex gap-3 justify-center">
+      <div class="grid grid-cols-4 aspect-auto gap-12 m-2">
+        
+        {data.map((pelicula) => (
+         
+          <Card
+            title={pelicula.title}
+            release={pelicula.release_date}
+            image={pelicula.poster_path}
+            vote={pelicula.vote_average}
+            click={pelicula.id}
+          />
+          <Modal
+          title={pelicula.title}
+            release={pelicula.release_date}
+            image={pelicula.poster_path}
+            vote={pelicula.vote_average}
+            overview={pelicula.overview}
+            click={pelicula.id}
+          />
+        ))}
+      </div>
+      
+    </main>
+  </Layout>
+  
+  
+

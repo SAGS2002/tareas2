@@ -1,0 +1,36 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CardProd from "../../components/CardProd.astro";
+import generos from "../../datos/generos";
+import peliculas from "../../datos/peliculas";
+
+export async function getStaticPaths() {
+  
+  return generos.map((item) => {
+    return {
+      params: { genero: item.id },
+      props: { name: item.name },
+    };
+  });
+}
+
+const { genero } = Astro.params;
+const id = parseInt(genero);
+const { name } = Astro.props;
+
+const peliculasFiltradas = peliculas.filter((pelicula) =>
+  pelicula.genre_ids.includes(id)
+);
+
+---
+
+<Layout title="Inicio">
+  <h3 class="text-center py-3">({peliculasFiltradas.length}) {name}</h3>
+  <div class="row">
+    {
+      peliculasFiltradas.map((item) => (
+        <CardProd  pelicula={item}/>	
+      ))
+    }
+  </div>
+</Layout>

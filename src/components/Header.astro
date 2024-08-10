@@ -1,0 +1,63 @@
+---
+import logo from "../../public/Logo.svg"
+import generos from "../datos/generos"
+
+
+
+---
+
+<header class="flex gap-12 justify-between p-3 bg-zinc-900">
+  <div class="flex gap-12" id="izq">
+    <a href="#">
+      <img class="h-8 mt-3" src={logo.src} alt="">
+    </a>
+    <nav class="md:flex items-center gap-12">
+      <a class="text-lg font-medium text-white" href="index">
+        Inicio
+      </a>
+      <details class="dropdown">
+        <summary class="btn m-1 text-white">Categorías 
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="m160-800 80 160h120l-80-160h80l80 160h120l-80-160h80l80 160h120l-80-160h120q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800Zm0 240v320h640v-320H160Zm0 0v320-320Z"/></svg>
+        </summary>
+        <ul class="menu dropdown-content rounded-box z-[1] w-52 p-2 shadow text-white bg-zinc-900">
+          { 
+        
+            generos.map((item)=>(<li class="hover:bg-zinc-700 rounded">
+            <a href={`/generos/${item.id}`}>
+              {item.name}
+            </a>
+          </li>))
+            
+          }
+          
+        </ul>
+      </details>
+    </nav>
+  </div>
+
+  <div class="relative flex">
+    <input
+      type="search"
+      class="relative m-0 block flex-auto rounded border border-solid border-neutral-200 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-surface outline-none transition duration-200 ease-in-out placeholder:text-white focus:z-[3] focus:border-primary focus:shadow-inset focus:outline-none motion-reduce:transition-none dark:border-white/10 dark:text-white dark:placeholder:text-white dark:autofill:shadow-autofill dark:focus:border-primary"
+      placeholder="Buscar películas..."
+      aria-label="Search"
+      id="exampleFormControlInput2"
+      aria-describedby="button-addon2" />
+    <button
+      class="flex items-center whitespace-nowrap px-3 py-[0.25rem] text-surface dark:border-white dark:text-white [&>svg]:h-5 [&>svg]:w-5"
+      id="button-addon2">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="2"
+        stroke="currentColor">
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+      </svg>
+    </button>
+  </div>
+
+</header>
