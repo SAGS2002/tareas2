@@ -3,6 +3,7 @@ import Layout from "../../layouts/Layout.astro";
 import CardProd from "../../components/CardProd.astro";
 import generos from "../../datos/generos";
 import peliculas from "../../datos/peliculas";
+import Modal from '../../components/Modal.astro'
 
 export async function getStaticPaths() {
   
@@ -25,12 +26,34 @@ const peliculasFiltradas = peliculas.filter((pelicula) =>
 ---
 
 <Layout title="Inicio">
-  <h3 class="text-center py-3">({peliculasFiltradas.length}) {name}</h3>
-  <div class="row">
-    {
-      peliculasFiltradas.map((item) => (
-        <CardProd  pelicula={item}/>	
-      ))
-    }
-  </div>
+   <h3 class="text-center py-3 text-white">({peliculasFiltradas.length}) {name}</h3>
+  <main class="mx-auto px-3 flex gap-3 justify-center">  
+    
+    <div class="grid grid-cols-4 aspect-auto gap-12 m-2">
+  
+     
+        
+         
+              {
+            peliculasFiltradas.map((item) => (
+              <CardProd  pelicula={item}/>	
+              ))
+              }
+            
+    </div>
+  </main>  
+
+  
+        
+        {peliculas.map((pelicula) => (
+          <Modal
+          title={pelicula.title}
+            release={pelicula.release_date}
+            image={pelicula.poster_path}
+            vote={pelicula.vote_average}
+            overview={pelicula.overview}
+            click={pelicula.id}
+          />
+        ))}
+ 
 </Layout>
